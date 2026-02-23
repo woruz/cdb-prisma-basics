@@ -1,0 +1,49 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+}
+
+model Author {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  name      String
+  books     Book[]
+  createdAt DateTime @default(now())
+}
+
+model Book {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  title     String
+
+  // Author relation (1:N)
+  author    Author   @relation(fields: [authorId], references: [id])
+  authorId  String   @db.ObjectId
+
+  // Many-to-many via join model
+  genres    BookGenre[]
+
+  createdAt DateTime @default(now())
+}
+
+model Genre {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  name      String   @unique
+
+  books     BookGenre[]
+
+  createdAt DateTime @default(now())
+}
+
+model BookGenre {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+
+  book      Book     @relation(fields: [bookId], references: [id])
+  bookId    String   @db.ObjectId
+
+  genre     Genre    @relation(fields: [genreId], references: [id])
+  genreId   String   @db.ObjectId
+
+  @@unique([bookId, genreId])
+}

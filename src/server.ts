@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import express from 'express';
 import authorRoutes from './routes/author.routes';
 import bookRoutes from './routes/book.routes';

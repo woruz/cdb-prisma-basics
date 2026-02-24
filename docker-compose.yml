@@ -9,10 +9,12 @@ services:
       DATABASE_URL: mongodb://mongo:27017/library
     depends_on:
       - mongo
+    command: sh -c "pnpm prisma db push && node dist/server.js"
 
   mongo:
     image: mongo:7
     restart: always
+    command: ["mongod", "--replSet", "rs0", "--bind_ip_all"]
     ports:
       - "27017:27017"
     volumes:

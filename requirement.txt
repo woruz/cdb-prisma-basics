@@ -1,0 +1,16 @@
+Read Prisma guidelines and implement the above tasks following the guidelines.
+Add Prisma to the project with MongoDB connector. 
+Prisma Documentation
+Prisma MongoDB Quick Start
+Add models Book, Author, and Genre. 
+Defining Models with Prisma
+Add relations between Book, Author, and Genre.
+Book should belong to an Author and many Genres.
+Author should have many Books.
+Genre should have many Books.
+Add routes for creating an Author, Book, and Genre.
+Add routes for listing books by Author and Genre.
+Add routes for fetching a single book with Author's name and Genre with name and total books count.
+Delete a book by id.
+Run the same application using Docker and Docker Compose.
+
